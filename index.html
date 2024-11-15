@@ -4,39 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
     <h1>Welcome to the Weather App</h1>
+    <main>
+      <form id="weatherForm">
+        <!-- User's name input -->
+        <label for="username">Enter your name:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Your name"
+        />
+        <small class="error" id="name-error" style="display: none; color: red"
+          >Please enter name to continue</small
+        >
 
-    <form id="weatherForm">
-      <!-- User's name input -->
-      <label for="username">Enter your name:</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder="Your name"
-      />
-      <small class="error" id="name-error" style="display: none; color: red"
-        >Please enter name to continue</small
-      >
+        <!-- City name input -->
+        <label for="city">Enter city:</label>
+        <input type="text" id="city" name="city" placeholder="City name" />
 
-      <!-- City name input -->
-      <label for="city">Enter city:</label>
-      <input type="text" id="city" name="city" placeholder="City name" />
-
-      <!-- Submit button -->
-      <button type="submit">Get Weather</button>
-    </form>
-    <!-- Temperature unit toggle -->
-    <div class="toggle-container">
-      <label for="unitToggle">Temperature Unit:</label>
-      <select id="unitToggle" name="unit">
-        <option value="C">Celsius (°C)</option>
-        <option value="F">Fahrenheit (°F)</option>
-      </select>
-    </div>
+        <!-- Submit button -->
+        <button type="submit">Get Weather</button>
+      </form>
+      <!-- Temperature unit toggle -->
+      <div class="toggle-container">
+        <label for="unitToggle">Temperature Unit:</label>
+        <select id="unitToggle" name="unit">
+          <option value="C">Celsius (°C)</option>
+          <option value="F">Fahrenheit (°F)</option>
+        </select>
+      </div>
+    </main>
 
     <!-- Section to display weather data -->
     <section id="weatherData">

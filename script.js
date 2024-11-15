@@ -8,6 +8,7 @@ const username = document.getElementById("username");
 const remember = document.getElementById("remember");
 const apiKey = "a1025ddda83b10393d79f1c15d7e8dc0";
 const card = document.querySelector(".card");
+const toggleButton = document.getElementById("unitToggle");
 
 let unit = `metric`; // This is equaled to Celsius
 
@@ -39,9 +40,9 @@ form.addEventListener("submit", async (event) => {
 });
 
 toggleButton.addEventListener(`change`, function () {
-  unit = toggleButton.checked ? `imperial` : `metric`;
+  unit = toggleButton.click ? `imperial` : `metric`;
   if (cityInput.value.trim()) {
-    getWeatherData(cityInput.value.trim()); // This if statment will re-fetch the weather data if the toggle is switched
+    getWeatherForecast(cityInput.value.trim()); // This if statement will re-fetch the weather data if the toggle is switched
   }
 });
 
