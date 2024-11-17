@@ -10,19 +10,31 @@ const apiKey = "a1025ddda83b10393d79f1c15d7e8dc0";
 const card = document.querySelector(".card");
 const toggleButton = document.getElementById("unitToggle");
 
-let unit = `metric`; // This is equaled to Celsius
+let unit = `metric`;
 
 // Event Listener for form submission
 form.addEventListener("submit", async (event) => {
   event.preventDefault(); // prevent form submission
-  // saveSessionStorage()
+  saveSessionStorage();
+  saveCookie();
   const cityInput = city.value.trim();
-  // const usernameInput = username.value;
 
   if (cityInput) {
     try {
       const weatherForecast = await getWeatherForecast(cityInput);
       displayWeatherInfo(weatherForecast);
+      console.log(`weatherForecast)`, weatherForecast);
+      saveLocalStorage(
+        JSON.stringify([
+          {
+            name: weatherForecast.main.name,
+            temp: weatherForecast.main.temp,
+            humidity: weatherForecast.main.humidity,
+            description: weatherForecast.weather[0].description,
+            id: weatherForecast.weather[0].id,
+          },
+        ])
+      );
     } catch (error) {
       console.error(error);
       displayError(error.message);
@@ -80,7 +92,7 @@ function displayWeatherInfo(data) {
   }°${unit === `metric` ? `C` : `F`}`;
 
   humidityDisplay.textContent = `Humidity: ${humidity}%`;
-  descDisplay.textContent = `Description: ${description}`;
+  descDisplay.textContent = `${description}`;
 
   card.appendChild(cityDisplay);
   card.appendChild(tempDisplay);
@@ -107,4 +119,27 @@ function hideError(errorId) {
 function showError(errorId) {
   const errorElement = document.getElementById(errorId);
   errorElement.style.display = "block";
+}
+// save data to session storage
+function saveSessionStorage() {
+  const cityData = document.querySelector("#city").value;
+
+  sessionStorage.setItem(`city`, cityData);
+}
+
+// save data to local storage
+function saveLocalStorage(weatherForecast) {
+  const nameData = document.getElementById("username").value;
+  const cityData = document.getElementById("city").value;
+
+  localStorage.setItem(`nameInput`, nameData);
+  localStorage.setItem(`city`, cityData);
+  localStorage.setItem(`savedWeatherData`, weatherForecast);
+}
+
+// save cookie
+function saveCookie() {
+  const cookieData = document.getElementById("username").value;
+  document.cookie = `myCookie=${cookieData}; max-age=300`;
+  document.getElementById("username").value = "data";
 }
