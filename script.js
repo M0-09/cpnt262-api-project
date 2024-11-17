@@ -141,5 +141,4 @@ function saveLocalStorage(weatherForecast) {
 function saveCookie() {
   const cookieData = document.getElementById("username").value;
   document.cookie = `myCookie=${cookieData}; max-age=300`;
-  document.getElementById("username").value = "data";
 }
