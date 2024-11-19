@@ -6,7 +6,7 @@ const form = document.getElementById("weatherForm");
 const cityInput = document.getElementById("city");
 const username = document.getElementById("username");
 const remember = document.getElementById("remember");
-const apiKey = "a1025ddda83b10393d79f1c15d7e8dc0";
+const apiKey = "__API_KEY__";
 const card = document.querySelector(".card");
 const toggleButton = document.getElementById("unitToggle");
 
